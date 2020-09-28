@@ -1,8 +1,8 @@
-const File = require("../Model/File");
-const PhotoFile = require("../Model/PhotoFile");
-const VideoFile = require("../Model/VideoFile");
-const SongFile = require("../Model/SongFile");
-const TextFile = require("../Model/TextFile");
+const File = require("../Models/File");
+const PhotoFile = require("../Models/PhotoFile");
+const VideoFile = require("../Models/VideoFile");
+const SongFile = require("../Models/SongFile");
+const TextFile = require("../Models/TextFile");
 
 const NumericFileFactory = function () {};
 

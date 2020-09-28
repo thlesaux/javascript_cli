@@ -1,7 +1,6 @@
-const File = require("../Model/File");
+const File = require("./File");
 
 const VideoFile = function (filename, size, type, hd) {
-    //TODO : ajout createdAt && seen
     File.call(this, filename, size, type);
     this.hd = hd;
 };

@@ -1,7 +1,6 @@
-const File = require("../Model/File");
+const File = require("./File");
 
 const PhotoFile = function (filename, size, type, pixelNumber) {
-    //TODO : ajout createdAt && seen
     File.call(this, filename, size, type);
     this.pixelNumber = pixelNumber;
 };
