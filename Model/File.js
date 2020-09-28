@@ -1,9 +1,17 @@
-const File = function (filename, size, type, createdAt, seen) {
+const File = function (filename, size, type) {
     this.filename = filename;
     this.size = size;
     this.type = type;
-    this.createdAt = createdAt;
-    this.seen = seen;
+    this.createdAt = null;
+    this.seen = null;
 };
 
-export { File };
+File.prototype.setCreatedAt = function (createdAt) {
+    this.createdAt = createdAt;
+}
+
+File.prototype.setSeen = function (seen) {
+    this.seen = seen;
+}
+
+module.exports = File;
