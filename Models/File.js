@@ -1,9 +1,11 @@
+const Date = require("../Models/Date");
+
 const File = function (filename, size, type) {
     this.filename = filename;
     this.size = size;
     this.type = type;
-    this.createdAt = null;
-    this.seen = null;
+    this.createdAt = Date;
+    this.seen = false;
 };
 
 File.prototype.setCreatedAt = function (createdAt) {

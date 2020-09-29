@@ -4,11 +4,11 @@ const VideoFile = require("../Models/VideoFile");
 const SongFile = require("../Models/SongFile");
 const TextFile = require("../Models/TextFile");
 
-const NumericFileFactory = function () {};
+const FileFactory = function () {};
 
-NumericFileFactory.prototype.numericFileClass = PhotoFile;
+FileFactory.prototype.numericFileClass = PhotoFile;
 
-NumericFileFactory.prototype.createFile = function (name, filename, size, type, attr_4) {
+FileFactory.prototype.createFile = function (name, filename, size, type, particularity) {
 
     if (!this.numericFileClass) throw 'given file is undefined';
 
@@ -25,18 +25,32 @@ NumericFileFactory.prototype.createFile = function (name, filename, size, type, 
         case TextFile.name:
             this.numericFileClass = TextFile;
             break;
+        default:
+            break;
     }
 
     //Héritage
     this.numericFileClass.prototype = Object.create(File.prototype);
     this.numericFileClass.prototype.constructor = this.numericFileClass;
 
-    return new this.numericFileClass(filename, size, type, attr_4);
+    return new this.numericFileClass(filename, size, type, particularity);
 };
 
-const myNumericProductFactory = new NumericFileFactory();
+//TODO : On va peut être utiliser le dp Singleton sur la Factory ???
+const myFileFactory = new FileFactory();
+const filesCollection = [];
 
-const photo = myNumericProductFactory.createFile('PhotoFile', 'test.jpg', 1024, 'jpg', 1000);
-photo.setCreatedAt('28/09/2020');
-photo.setSeen(false);
-console.log(photo);
+filesCollection.push(myFileFactory.createFile('PhotoFile', 'surf_at_lacanau.jpg', 1024, 'jpg', 1000));
+filesCollection.push(myFileFactory.createFile('TextFile', 'documentation_react.docx', 2024, 'docx', true));
+filesCollection.push(myFileFactory.createFile('SongFile', 'love_yourself.mp3', 6024, 'mp3',  true));
+filesCollection.push(myFileFactory.createFile('VideoFile', 'got.avi', 10024, 'avi',  true));
+filesCollection.push(myFileFactory.createFile('PhotoFile', 'party_at_cancun.jpg', 1424, 'jpg',  3000));
+filesCollection.push(myFileFactory.createFile('TextFile', 'my_best_book.pdf', 3024, 'pdf', false));
+filesCollection.push(myFileFactory.createFile('SongFile', 'my_song.mp3', 8024, 'mp3',  false));
+filesCollection.push(myFileFactory.createFile('VideoFile', 'breaking_bad.mp4', 8024, 'mp4',  false));
+filesCollection.push(myFileFactory.createFile('PhotoFile', 'family.png', 2024, 'png',  2000));
+filesCollection.push(myFileFactory.createFile('TextFile','documentation_react.docx',2024,'docx',true));
+filesCollection.push(myFileFactory.createFile('SongFile', 'band.mp3', 2024, 'mp3',  true));
+filesCollection.push(myFileFactory.createFile('VideoFile', 'youtube.mp4', 12024, 'mp4',  true));
+
+module.exports = filesCollection;
