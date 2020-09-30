@@ -11,7 +11,7 @@ let index = 0;
 
 // Observer ?
 process.stdin.on('keypress', (str, key) => {
-    // key est la clef correspondante de la touche du clavier, key.name son appélation
+    // key est la clef correspondante de la touche du clavier, key.name étant son appélation
     if (key.ctrl && key.name === 'c') {
         // CTRL + C --> Stop l'exécution du programme
         process.exit();
@@ -28,6 +28,7 @@ process.stdin.on('keypress', (str, key) => {
                     console.log(filesCollection[index]);
                     console.log();
                     //TODO : DP Observer pour le setSeen ?
+                    // add() vers fileObserver pour mettre le seen à true
                     filesCollection[index].setSeen(true);
                     index++;
                 }
@@ -46,6 +47,8 @@ process.stdin.on('keypress', (str, key) => {
                 break;
             case 'e':
                 //TODO : Méthode à mettre dans un décorator -> Model File
+                // Je pense plus qu'il faut mettre une fonction get() qui récupère la liste des files vues
+                // donc plutôt dans une méthode d'observer que dans un decorator. Ton avis ?
                 let nbFileSeen = 0;
                 filesCollection.forEach((item) => {
                     if (item['seen']) {
@@ -58,7 +61,7 @@ process.stdin.on('keypress', (str, key) => {
             case 'c':
                 //TODO : Méthode à mettre dans un décorator -> Model File
                 console.clear();
-                console.log('Vous avez vu ' + filesCollection.length + ' fichiers');
+                console.log('Il y a un total de ' + filesCollection.length + ' fichiers');
                 break;
             default:
                 break;
