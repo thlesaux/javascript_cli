@@ -8,7 +8,8 @@ const File = require("./File");
 //     this.pixelNumber = pixelNumber;
 // };
 
-// Pour le décorateur, le principe c'est exactement ça, cependant, si on passe un file dans le constructeur, la factory ne va plus nous servir à rien, ça n'aura plus de sens (je pense après je peux me tromper)
+// (Thomas) Pour le décorateur, le principe c'est exactement ça, cependant, si on passe un file dans le constructeur,
+// la factory ne va plus nous servir à rien, ça n'aura plus de sens (je pense après je peux me tromper)
 // Il faudrait décorer les méthodes d'une classe à vrai dire du style
 // Exemple -->
 // Classe de base
