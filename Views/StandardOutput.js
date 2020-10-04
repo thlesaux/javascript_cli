@@ -85,7 +85,6 @@ const loadCli = function () {
                         console.log(FileFactory.filesCollection[index]);
                         console.log()
                     }
-
                     fileObserver.add(Observer.observerHandler);
                     fileObserver.fire(" <-- Flèche de gauche");
                     fileObserver.remove(Observer.observerHandler)
@@ -139,4 +138,4 @@ const startCli = function () {
     loadCli();
 }
 
-module.exports = {startCli};
+module.exports = { startCli };

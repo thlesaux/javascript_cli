@@ -9,12 +9,11 @@ const VideoFile = function (filename, size, type, hd) {
 const VideoFileDecorator = function (videoFile) {
     VideoFile.call(this);
     this.videoFile = videoFile;
-
 };
 
 VideoFileDecorator.prototype = Object.create(VideoFile.prototype);
-VideoFileDecorator.prototype.toDisplay = function () {
 
+VideoFileDecorator.prototype.toDisplay = function () {
     let completeSentense = this.videoFile.hd ? ' qui est hd.' : ' qui n\'est pas hd.';
 
     return `Ceci est un fichier qui se nomme ${this.videoFile.filename},` +
@@ -22,4 +21,4 @@ VideoFileDecorator.prototype.toDisplay = function () {
 }
 
 
-module.exports = {VideoFile, VideoFileDecorator};
+module.exports = { VideoFile, VideoFileDecorator };

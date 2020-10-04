@@ -9,12 +9,11 @@ const TextFile = function (filename, size, type, encrypted) {
 const TextFileDecorator = function (textFile) {
     TextFile.call(this);
     this.textFile = textFile;
-
 };
 
 TextFileDecorator.prototype = Object.create(TextFile.prototype);
-TextFileDecorator.prototype.toDisplay = function () {
 
+TextFileDecorator.prototype.toDisplay = function () {
     let completeSentense = this.textFile.encrypted ? ' qui est hd.' : ' qui n\'est pas hd.';
 
     return `Ceci est un fichier qui se nomme ${this.textFile.filename},` +

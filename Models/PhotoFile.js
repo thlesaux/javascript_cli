@@ -9,13 +9,13 @@ const PhotoFile = function (filename, size, type, pixelNumber) {
 const PhotoFileDecorator = function (photoFile) {
     PhotoFile.call(this);
     this.photoFile = photoFile;
-
 };
 
 PhotoFileDecorator.prototype = Object.create(PhotoFile.prototype);
+
 PhotoFileDecorator.prototype.toDisplay = function () {
     return `Ceci est un fichier qui se nomme ${this.photoFile.filename},` +
-        ` ayant pour format ${this.photoFile.type}, de taille ${this.photoFile.size}Mo et un nombre de pixel égal à ${this.photoFile.pixelNumber}.`;
+        ` ayant pour format ${this.photoFile.type}, de taille ${this.photoFile.size}Mo et un nombre de pixels égal à ${this.photoFile.pixelNumber}.`;
 }
 
-module.exports = {PhotoFile, PhotoFileDecorator};
+module.exports = { PhotoFile, PhotoFileDecorator };
