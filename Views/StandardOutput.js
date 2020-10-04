@@ -1,6 +1,8 @@
 const FileFactory = require("../Controllers/FileFactory");
-const fileObserver = require("../Controllers/FileObserver");
+const Observer = require("../Controllers/FileObserver");
 const PhotoFile = require("../Models/PhotoFile");
+
+const fileObserver = new Observer.FileObserver();
 
 // Promise pour une tâche asynchrone
 function addFilesAfter30Sec() {
@@ -60,11 +62,12 @@ const loadCli = function () {
                         console.clear();
                         console.log(FileFactory.filesCollection[index]);
                         console.log();
-                        //TODO : DP Observer pour le setSeen ?
-                        // add() vers fileObserver pour mettre le seen à true
                         FileFactory.filesCollection[index].setSeen(true);
                         index++;
                     }
+                    fileObserver.add(Observer.observerHandler);
+                    fileObserver.fire("Flèche de droite -->");
+                    fileObserver.remove(Observer.observerHandler)
                     break;
                 // Flèche directionnelle de gauche
                 case 'left':
@@ -78,6 +81,10 @@ const loadCli = function () {
                         console.log(FileFactory.filesCollection[index]);
                         console.log()
                     }
+
+                    fileObserver.add(Observer.observerHandler);
+                    fileObserver.fire("Flèche de gauche -->");
+                    fileObserver.remove(Observer.observerHandler)
                     break;
                 case 'e':
                     //TODO : Je pense plus qu'il faut mettre une fonction get() qui récupère la liste des files vues dans une méthode d'observer -> (Thomas) Oui je suis OK bg
