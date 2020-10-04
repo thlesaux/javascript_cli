@@ -1,5 +1,6 @@
 const FileFactory = require("../Controllers/FileFactory");
 const fileObserver = require("../Controllers/FileObserver");
+const PhotoFile = require("../Models/PhotoFile");
 
 // Promise pour une tâche asynchrone
 function addFilesAfter30Sec() {
@@ -96,8 +97,15 @@ const loadCli = function () {
                     break;
                 case 'i':
                     console.clear();
-                    console.log(index);
-                    console.log(FileFactory.filesCollection[index]['type']);
+                    var obj = FileFactory.filesCollection[index];
+                    switch (obj.constructor.name) {
+                        case 'PhotoFile':
+                            console.log(PhotoFile.PhotoFileWithToString(obj));
+                            break;
+                    
+                        default:
+                            break;
+                    }
                     break;
                 default:
                     break;

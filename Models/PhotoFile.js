@@ -20,10 +20,7 @@ const File = require("./File");
 // };
 //
 //Classe décorée
-//
-// const PhotoFileWithToString = (photoFile) => {
-//     this.toString = () => `Ceci est un fichier de type ${photoFile.type} ...`
-// };
+
 //
 // On décore après l'initialisation de l'objet donc après la factory si l'on veut
 // Imaginons un objet PhotoFile photo1;
@@ -34,6 +31,17 @@ const File = require("./File");
 const PhotoFile = function (filename, size, type, pixelNumber) {
     File.call(this, filename, size, type);
     this.pixelNumber = pixelNumber;
+
+    this.toString = () => { return 'blablabla' };
 };
 
-module.exports = PhotoFile;
+// Classe décorée
+
+const PhotoFileWithToString = function (photoFile) {
+    console.log('test');
+    const currentToString = photoFile.toString();
+
+    photoFile.toString = () => { return currentToString + `connard ${photoFile.type}` }
+};
+
+module.exports = { PhotoFile, PhotoFileWithToString };

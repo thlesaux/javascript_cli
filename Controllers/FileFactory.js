@@ -9,7 +9,7 @@ const SingletonFactory = (function () {
     let instance = null;
 
     const FileFactory = function () {
-        const numericFileClass = PhotoFile;
+        const numericFileClass = PhotoFile.PhotoFile;
         const getNumericFileClass = () => {
             return numericFileClass;
         }
@@ -20,8 +20,9 @@ const SingletonFactory = (function () {
             if (!this.numericFileClass) throw 'given file is undefined';
 
             switch (name) {
-                case PhotoFile.name:
-                    this.numericFileClass = PhotoFile;
+                case PhotoFile.PhotoFile.name:
+                    this.numericFileClass = PhotoFile.PhotoFile;
+                    PhotoFile.PhotoFileWithToString(this.numericFileClass);
                     break;
                 case VideoFile.name:
                     this.numericFileClass = VideoFile;
