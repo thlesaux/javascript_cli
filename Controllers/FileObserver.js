@@ -6,7 +6,7 @@ fileObserver.prototype = {
     add: function (e) {
         this.observers.push(e);
     },
-    get: function () {
+    count: function () {
         return this.observers.length;
     }
 }

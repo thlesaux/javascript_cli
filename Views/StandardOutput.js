@@ -1,6 +1,7 @@
 const FileFactory = require("../Controllers/FileFactory");
+const fileObserver = require("../Controllers/FileObserver");
 
-//Promise for async task
+// Promise pour une tâche asynchrone
 function addFilesAfter30Sec() {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -74,6 +75,7 @@ const loadCli = function () {
                         index--;
                         console.clear();
                         console.log(FileFactory.filesCollection[index]);
+                        console.log()
                     }
                     break;
                 case 'e':
@@ -91,6 +93,11 @@ const loadCli = function () {
                     //TODO : Méthode à mettre dans un décorator -> Voir exemple dans le PhotoFile (Thomas)
                     console.clear();
                     console.log('Il y a un total de ' + FileFactory.filesCollection.length + ' fichiers');
+                    break;
+                case 'i':
+                    console.clear();
+                    console.log(index);
+                    console.log(FileFactory.filesCollection[index]['type']);
                     break;
                 default:
                     break;
