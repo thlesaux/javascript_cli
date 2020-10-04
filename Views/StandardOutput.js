@@ -1,6 +1,10 @@
 const FileFactory = require("../Controllers/FileFactory");
 const Observer = require("../Controllers/FileObserver");
-const PhotoFile = require("../Models/PhotoFile");
+const Photo = require("../Models/PhotoFile");
+const Video = require("../Models/VideoFile");
+const Song = require("../Models/SongFile");
+const Text = require("../Models/TextFile");
+
 
 const fileObserver = new Observer.FileObserver();
 
@@ -17,7 +21,7 @@ function addFilesAfter30Sec() {
     });
 }
 
-//Async Task
+//Tâche asynchrone
 async function asyncCall() {
     await addFilesAfter30Sec();
 }
@@ -83,11 +87,10 @@ const loadCli = function () {
                     }
 
                     fileObserver.add(Observer.observerHandler);
-                    fileObserver.fire("Flèche de gauche -->");
+                    fileObserver.fire(" <-- Flèche de gauche");
                     fileObserver.remove(Observer.observerHandler)
                     break;
                 case 'e':
-                    //TODO : Je pense plus qu'il faut mettre une fonction get() qui récupère la liste des files vues dans une méthode d'observer -> (Thomas) Oui je suis OK bg
                     let nbFileSeen = 0;
                     FileFactory.filesCollection.forEach((item) => {
                         if (item['seen']) {
@@ -98,18 +101,25 @@ const loadCli = function () {
                     console.log('Vous avez vu ' + nbFileSeen + ' fichiers');
                     break;
                 case 'c':
-                    //TODO : Méthode à mettre dans un décorator -> Voir exemple dans le PhotoFile (Thomas)
                     console.clear();
                     console.log('Il y a un total de ' + FileFactory.filesCollection.length + ' fichiers');
                     break;
                 case 'i':
                     console.clear();
-                    var obj = FileFactory.filesCollection[index];
-                    switch (obj.constructor.name) {
+                    const currentObj = FileFactory.filesCollection[index];
+                    switch (currentObj.constructor.name) {
                         case 'PhotoFile':
-                            console.log(PhotoFile.PhotoFileWithToString(obj));
+                            console.log(new Photo.PhotoFileDecorator(currentObj).toDisplay());
                             break;
-                    
+                        case 'SongFile':
+                            console.log(new Song.SongFileDecorator(currentObj).toDisplay());
+                            break;
+                        case 'VideoFile':
+                            console.log(new Video.VideoFileDecorator(currentObj).toDisplay());
+                            break;
+                        case 'TextFile':
+                            console.log(new Text.TextFileDecorator(currentObj).toDisplay());
+                            break;
                         default:
                             break;
                     }
@@ -129,4 +139,4 @@ const startCli = function () {
     loadCli();
 }
 
-module.exports = { startCli };
+module.exports = {startCli};

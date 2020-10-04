@@ -1,15 +1,15 @@
 const File = require("../Models/File");
-const PhotoFile = require("../Models/PhotoFile");
-const VideoFile = require("../Models/VideoFile");
-const SongFile = require("../Models/SongFile");
-const TextFile = require("../Models/TextFile");
+const Photo = require("../Models/PhotoFile");
+const Video = require("../Models/VideoFile");
+const Song = require("../Models/SongFile");
+const Text = require("../Models/TextFile");
 
 const SingletonFactory = (function () {
 
     let instance = null;
 
     const FileFactory = function () {
-        const numericFileClass = PhotoFile.PhotoFile;
+        const numericFileClass = Photo.PhotoFile;
         const getNumericFileClass = () => {
             return numericFileClass;
         }
@@ -20,18 +20,17 @@ const SingletonFactory = (function () {
             if (!this.numericFileClass) throw 'given file is undefined';
 
             switch (name) {
-                case PhotoFile.PhotoFile.name:
-                    this.numericFileClass = PhotoFile.PhotoFile;
-                    PhotoFile.PhotoFileWithToString(this.numericFileClass);
+                case Photo.PhotoFile.name:
+                    this.numericFileClass = Photo.PhotoFile;
                     break;
-                case VideoFile.name:
-                    this.numericFileClass = VideoFile;
+                case Video.VideoFile.name:
+                    this.numericFileClass = Video.VideoFile;
                     break;
-                case SongFile.name:
-                    this.numericFileClass = SongFile;
+                case Song.SongFile.name:
+                    this.numericFileClass = Song.SongFile;
                     break;
-                case TextFile.name:
-                    this.numericFileClass = TextFile;
+                case Text.TextFile.name:
+                    this.numericFileClass = Text.TextFile;
                     break;
                 default:
                     break;
